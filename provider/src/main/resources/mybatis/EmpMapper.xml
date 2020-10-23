@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper  namespace="com.jk.mapper.EmpMapper">
+    <select id="findEmp"   resultType="Emp">
+        select  e.*,b.bm_name as bmName from  t_emp  e
+            left join t_bm b on e.bm_id = b.bm_id
+    </select>
+    <delete id="deleteEmp">
+        delete from t_emp  where emp_id = #{value}
+    </delete>
+    <insert id="addEmp">
+        insert into t_emp(emp_name,bm_id,emp_date,emp_gw,emp_zw)
+        values(#{empName},#{bmId},#{empDate},#{empGw},#{empZw})
+    </insert>
+    <select id="findById"  resultType="Emp">
+        select * from t_emp where emp_id = #{value}
+    </select>
+    <update id="updateEmp">
+        update t_emp set emp_name=#{empName},bm_id=#{bmId},emp_date=#{empDate},emp_gw=#{empGw},emp_zw=#{empZw} where emp_id = #{empId}
+    </update>
+</mapper>

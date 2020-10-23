@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}">
+    <script th:src="@{/webjars/jquery/3.5.1/dist/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div  class="container">
+    <h1>员工数据</h1>
+    <div  class="btn-group">
+        <a class="btn btn-info" th:href="@{toAdd}">新增</a>
+    </div>
+    <p>
+    <table  class="table  table-bordered table-striped table-hover dataTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>员工名称</th>
+            <th>员工部门</th>
+            <th>入职日期</th>
+            <th>员工岗位</th>
+            <th>员工职责</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp : ${empList}">
+            <td th:text="${emp.empId}"></td>
+            <td th:text="${emp.empName}"></td>
+            <td th:text="${emp.bmName}"></td>
+            <td th:text="${emp.empDate}"></td>
+            <td th:text="${emp.empGw}"></td>
+            <td th:text="${emp.empZw}"></td>
+            <td>
+                <a  th:href="@{/deleteEmp(id=${emp.empId})}">删除</a>
+                <a  th:href="@{/findById(id=${emp.empId})}">修改</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
